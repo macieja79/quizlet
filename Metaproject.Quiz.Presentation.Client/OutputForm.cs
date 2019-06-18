@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace Metaproject.Quiz.Presentation.Client
 {
-    public partial class Form1 : Form
+    public partial class OutputForm : Form
     {
-        public Form1()
+        public OutputForm()
         {
             InitializeComponent();
         }
+
+        public void AppendOutput(string output)
+        {
+            textBox1.Text = output;
+        }
+
     }
 }

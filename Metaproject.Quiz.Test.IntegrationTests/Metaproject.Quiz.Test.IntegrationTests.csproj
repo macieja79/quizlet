@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ADDEDC08-AF30-4351-8F8E-EC5EAE867CA7}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>Metaproject.Quiz.Presentation.Client</RootNamespace>
-    <AssemblyName>Metaproject.Quiz.Presentation.Client</AssemblyName>
+    <ProjectGuid>{65FC3D46-184A-46ED-BD34-195C095C0CBB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Metaproject.Quiz.Test.IntegrationTests</RootNamespace>
+    <AssemblyName>Metaproject.Quiz.Test.IntegrationTests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.9.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.9.2\lib\net45\Autofac.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -42,56 +40,13 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ClientForm.Designer.cs">
-      <DependentUpon>ClientForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="IoC\Module.cs" />
-    <Compile Include="OutputForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OutputForm.Designer.cs">
-      <DependentUpon>OutputForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Helpers\IntegrationTestsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ClientForm.resx">
-      <DependentUpon>ClientForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OutputForm.resx">
-      <DependentUpon>OutputForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <Compile Include="WordTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Metaproject.Quiz.Application.Core\Metaproject.Quiz.Application.Core.csproj">
@@ -103,9 +58,26 @@
       <Name>Metaproject.Quiz.Domain.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Metaproject.Quiz.Inf.IoC\Metaproject.Quiz.Inf.IoC.csproj">
-      <Project>{66BADCD7-51BB-4833-A1F1-3DF88B393FF3}</Project>
+      <Project>{66badcd7-51bb-4833-a1f1-3df88b393ff3}</Project>
       <Name>Metaproject.Quiz.Inf.IoC</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Metaproject.Quiz.Inf.WordRepository\Metaproject.Quiz.Inf.WordRepository.csproj">
+      <Project>{1332cf73-ef6a-448d-b618-3fea03518334}</Project>
+      <Name>Metaproject.Quiz.Inf.WordRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Metaproject.Quiz.Presentation.Client\Metaproject.Quiz.Presentation.Client.csproj">
+      <Project>{addedc08-af30-4351-8f8e-ec5eae867ca7}</Project>
+      <Name>Metaproject.Quiz.Presentation.Client</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Resources\integration-test-cheatsheet-table.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\integration-test-question-table.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
