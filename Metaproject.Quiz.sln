@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29001.49
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metaproject.Quiz.Presentation.Client", "Metaproject.Quiz.Presentation.Client\Metaproject.Quiz.Presentation.Client.csproj", "{ADDEDC08-AF30-4351-8F8E-EC5EAE867CA7}"
 EndProject
@@ -16,6 +16,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metaproject.Quiz.Test.IntegrationTests", "Metaproject.Quiz.Test.IntegrationTests\Metaproject.Quiz.Test.IntegrationTests.csproj", "{65FC3D46-184A-46ED-BD34-195C095C0CBB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metaproject.Quiz.Inf.QuizletService", "Metaproject.Quiz.Inf.QuizletService\Metaproject.Quiz.Inf.QuizletService.csproj", "{75C926CE-682C-4A63-9129-FF5F6C2A2255}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_devops", "_devops", "{53D90C4A-1A85-401F-8F86-A42791FF9E5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VBA", "VBA", "{5BC1242A-D073-465E-9754-5957D68166CF}"
+	ProjectSection(SolutionItems) = preProject
+		_devops\VBA\word-macros.vb = _devops\VBA\word-macros.vb
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +61,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5BC1242A-D073-465E-9754-5957D68166CF} = {53D90C4A-1A85-401F-8F86-A42791FF9E5A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78CB8E47-FBB6-4185-B6FC-01FD3DAEB294}
