@@ -10,6 +10,13 @@ namespace Metaproject.Quiz.Inf.WordRepository
 {
     public class TableQuestionMapper : TableMapperBase, ITableMapper
     {
+        private readonly IQuestionIdParser _questionIdParser;
+
+        public TableQuestionMapper(IQuestionIdParser questionIdParser)
+        {
+            _questionIdParser = questionIdParser;
+        }
+
         public bool TryGetQuestionTable(Table wordTable, out List<QuestionTable> questions)
         {
             questions = new List<QuestionTable>();
@@ -46,12 +53,15 @@ namespace Metaproject.Quiz.Inf.WordRepository
 
             bool isSwitchable = options.Contains("switch");
 
+            var id = GetIdFromOptions(options, _questionIdParser);
+
             var table = new Domain.Entities.QuestionTable
             {
                 Question = question,
                 Answers = answers,
                 Tags = tags,
-                IsSwitchable = isSwitchable
+                IsSwitchable = isSwitchable,
+                Id = id
             };
 
             questions.Add(table);

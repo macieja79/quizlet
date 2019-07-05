@@ -52,7 +52,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappers\IQuestionIdParser.cs" />
     <Compile Include="Mappers\ITableMapper.cs" />
+    <Compile Include="Mappers\QuestionIdParser.cs" />
     <Compile Include="Mappers\TableCheatsheetMapper.cs" />
     <Compile Include="Mappers\TableMapperBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

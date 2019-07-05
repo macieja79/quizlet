@@ -12,6 +12,13 @@ namespace Metaproject.Quiz.Inf.WordRepository
 {
     public class TableCheatsheetMapper : TableMapperBase, ITableMapper
     {
+        private readonly IQuestionIdParser _questionIdParser;
+
+        public TableCheatsheetMapper(IQuestionIdParser questionIdParser)
+        {
+            _questionIdParser = questionIdParser;
+        }
+
         public bool TryGetQuestionTable(Table wordTable, out List<QuestionTable> questions)
         {
             questions = new List<QuestionTable>();
@@ -37,6 +44,8 @@ namespace Metaproject.Quiz.Inf.WordRepository
             var options = GetChildParagraphs(optionsCell).Split('|').Select(s => s.ToLower()).ToList();
             bool isSwitchable = options.Contains("switch");
 
+            bool hasIds = tagRowsCells.Count >= 3;
+
 
             foreach (var questionRow in questionRows)
             {
@@ -45,7 +54,7 @@ namespace Metaproject.Quiz.Inf.WordRepository
 
                 var questionCell = questionRowCells[0];
                 var answerCell = questionRowCells[1];
-
+                
                 var question = GetChildParagraphs(questionCell);
                 var answers = GetChildParagraphsForAnswer(answerCell);
 
@@ -57,8 +66,17 @@ namespace Metaproject.Quiz.Inf.WordRepository
                     IsSwitchable = isSwitchable
                 };
 
-                questions.Add(table);
+                if (hasIds)
+                {
+                    var idCell = questionRowCells[2];
+                    var id = GetChildParagraphs(idCell);
+                    if (_questionIdParser.TryParse(id, out DateTime result))
+                    {
+                        table.Id = result;
+                    }
+                }
 
+                questions.Add(table);
             }
 
             return true;

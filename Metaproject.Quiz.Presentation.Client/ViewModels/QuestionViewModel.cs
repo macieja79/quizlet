@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace Metaproject.Quiz.Presentation.Client.ViewModels
         public string Question => Table.Question;
 
         public string Answer => Table.Answer;
+
+        public string Id => Table.Id?.ToString(CultureInfo.InvariantCulture) ?? "";
 
         public string Tag1 => Table.Tags.Count > 0 ? Table.Tags[0] : "";
 

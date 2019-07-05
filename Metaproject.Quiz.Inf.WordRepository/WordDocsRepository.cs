@@ -8,6 +8,7 @@ using DocumentFormat.OpenXml.Packaging;
 using Metaproject.Quiz.Application.Core;
 using Metaproject.Quiz.Domain.Entities;
 using Metaproject.Quiz.Inf.WordRepository;
+using Metaproject.Quiz.Inf.WordRepository.Mappers;
 using Path = System.IO.Path;
 using Word = DocumentFormat.OpenXml.Wordprocessing;
 
@@ -17,8 +18,8 @@ namespace Metaproject.Quiz.Inf.WordDocsRepository
     public class WordFilesRepository : IWordFilesRepository
     {
 
-        TableCheatsheetMapper _cheatsheetMapper = new TableCheatsheetMapper();
-        TableQuestionMapper _questionMapper = new TableQuestionMapper();
+        TableCheatsheetMapper _cheatsheetMapper = new TableCheatsheetMapper(new QuestionIdParser());
+        TableQuestionMapper _questionMapper = new TableQuestionMapper(new QuestionIdParser());
 
 
         public List<WordDocument> GetAllDocuments(string rootPath)

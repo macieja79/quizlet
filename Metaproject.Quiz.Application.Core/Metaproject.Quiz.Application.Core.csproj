@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Infrastucture\Quiz\IQuestionGenerator.cs" />
     <Compile Include="Infrastucture\Word\IWordFilesRepository.cs" />
+    <Compile Include="Internals\IParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

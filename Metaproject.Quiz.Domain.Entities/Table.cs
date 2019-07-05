@@ -12,6 +12,8 @@ namespace Metaproject.Quiz.Domain.Entities
         public bool IsSwitchable { get; set; }
         public string Answer => string.Join(Environment.NewLine, Answers);
 
+        public DateTime? Id { get; set; }
+
         public override string ToString()
         {
             return $"{Question} | { Answer} | { string.Join(";", Tags)}";
