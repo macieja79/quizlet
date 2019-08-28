@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29025.244
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metaproject.Quiz.Presentation.Client", "Metaproject.Quiz.Presentation.Client\Metaproject.Quiz.Presentation.Client.csproj", "{ADDEDC08-AF30-4351-8F8E-EC5EAE867CA7}"
 EndProject
@@ -24,7 +24,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VBA", "VBA", "{5BC1242A-D07
 		_devops\VBA\word-macros.vb = _devops\VBA\word-macros.vb
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metaproject.Quiz.Test.UnitTests", "Metaproject.Quiz.Test.UnitTests\Metaproject.Quiz.Test.UnitTests.csproj", "{52A619EB-C1E5-4F2F-A99A-6B89B99C64B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metaproject.Quiz.Test.UnitTests", "Metaproject.Quiz.Test.UnitTests\Metaproject.Quiz.Test.UnitTests.csproj", "{52A619EB-C1E5-4F2F-A99A-6B89B99C64B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metaproject.Quiz.Inf.LearningService", "Metaproject.Quiz.Inf.LearningService\Metaproject.Quiz.Inf.LearningService.csproj", "{B10D7D7B-2591-40F2-9E0E-7927AFA993C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +66,10 @@ Global
 		{52A619EB-C1E5-4F2F-A99A-6B89B99C64B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52A619EB-C1E5-4F2F-A99A-6B89B99C64B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52A619EB-C1E5-4F2F-A99A-6B89B99C64B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B10D7D7B-2591-40F2-9E0E-7927AFA993C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B10D7D7B-2591-40F2-9E0E-7927AFA993C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B10D7D7B-2591-40F2-9E0E-7927AFA993C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B10D7D7B-2591-40F2-9E0E-7927AFA993C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

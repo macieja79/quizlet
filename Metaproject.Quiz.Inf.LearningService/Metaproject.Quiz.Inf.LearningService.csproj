@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9F294AA0-3E6E-4309-9F0B-4B4BA475C45E}</ProjectGuid>
+    <ProjectGuid>{B10D7D7B-2591-40F2-9E0E-7927AFA993C8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Metaproject.Quiz.Application.Core</RootNamespace>
-    <AssemblyName>Metaproject.Quiz.Application.Core</AssemblyName>
+    <RootNamespace>Metaproject.Quiz.Inf.LearningService</RootNamespace>
+    <AssemblyName>Metaproject.Quiz.Inf.LearningService</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,18 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastucture\Learn\ILearningService.cs" />
-    <Compile Include="Infrastucture\Learn\LearningServiceProcessResult.cs" />
-    <Compile Include="Infrastucture\Learn\LearningStatus.cs" />
-    <Compile Include="Infrastucture\Learn\QuestionResult.cs" />
-    <Compile Include="Infrastucture\Quiz\IQuestionGenerator.cs" />
-    <Compile Include="Infrastucture\Word\IWordFilesRepository.cs" />
-    <Compile Include="Internals\IParser.cs" />
+    <Compile Include="LearningService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Metaproject.Quiz.Application.Core\Metaproject.Quiz.Application.Core.csproj">
+      <Project>{9F294AA0-3E6E-4309-9F0B-4B4BA475C45E}</Project>
+      <Name>Metaproject.Quiz.Application.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Metaproject.Quiz.Domain.Entities\Metaproject.Quiz.Domain.Entities.csproj">
-      <Project>{529c5cdb-1f6d-48ea-b5fc-5f35d83287d2}</Project>
+      <Project>{529C5CDB-1F6D-48EA-B5FC-5F35D83287D2}</Project>
       <Name>Metaproject.Quiz.Domain.Entities</Name>
     </ProjectReference>
   </ItemGroup>
