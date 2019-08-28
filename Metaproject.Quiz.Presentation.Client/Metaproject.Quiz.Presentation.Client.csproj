@@ -116,6 +116,10 @@
       <Project>{66BADCD7-51BB-4833-A1F1-3DF88B393FF3}</Project>
       <Name>Metaproject.Quiz.Inf.IoC</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Metaproject.Quiz.Inf.LearningService\Metaproject.Quiz.Inf.LearningService.csproj">
+      <Project>{B10D7D7B-2591-40F2-9E0E-7927AFA993C8}</Project>
+      <Name>Metaproject.Quiz.Inf.LearningService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

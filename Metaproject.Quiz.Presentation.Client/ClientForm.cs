@@ -55,6 +55,16 @@ namespace Metaproject.Quiz.Presentation.Client
             outputForm.ShowDialog(this);
         }
 
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            var tablesModel = (List<QuestionViewModel>)dataGridView1.DataSource;
+            var questions = tablesModel.Select(t => t.Table).ToList();
+
+            var learnForm = new LearningForm();
+            learnForm.AttachQuestions(questions);
+            learnForm.ShowDialog(this);
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             var tags = new List<string>();
@@ -71,7 +81,6 @@ namespace Metaproject.Quiz.Presentation.Client
             .Where(t => t.Tags.Intersect(_tags).Count() == _tags.Count).Select(q => new QuestionViewModel(q)).ToList();
 
 
-
-
+        
     }
 }
