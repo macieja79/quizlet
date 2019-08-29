@@ -60,8 +60,7 @@ namespace Metaproject.Quiz.Presentation.Client
             var tablesModel = (List<QuestionViewModel>)dataGridView1.DataSource;
             var questions = tablesModel.Select(t => t.Table).ToList();
 
-            var learnForm = new LearningForm();
-            learnForm.AttachQuestions(questions);
+            var learnForm = new LearningForm(questions);
             learnForm.ShowDialog(this);
         }
 

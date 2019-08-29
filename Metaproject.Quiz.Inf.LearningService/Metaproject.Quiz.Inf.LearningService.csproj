@@ -49,6 +49,10 @@
       <Project>{9F294AA0-3E6E-4309-9F0B-4B4BA475C45E}</Project>
       <Name>Metaproject.Quiz.Application.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Metaproject.Quiz.Application.Internals\Metaproject.Quiz.Application.Internals.csproj">
+      <Project>{5F84E076-1FB3-4C7C-B199-E8E8E58F9ABF}</Project>
+      <Name>Metaproject.Quiz.Application.Internals</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Metaproject.Quiz.Domain.Entities\Metaproject.Quiz.Domain.Entities.csproj">
       <Project>{529C5CDB-1F6D-48EA-B5FC-5F35D83287D2}</Project>
       <Name>Metaproject.Quiz.Domain.Entities</Name>

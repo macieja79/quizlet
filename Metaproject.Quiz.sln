@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metaproject.Quiz.Presentation.Client", "Metaproject.Quiz.Presentation.Client\Metaproject.Quiz.Presentation.Client.csproj", "{ADDEDC08-AF30-4351-8F8E-EC5EAE867CA7}"
 EndProject
@@ -27,6 +27,18 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metaproject.Quiz.Test.UnitTests", "Metaproject.Quiz.Test.UnitTests\Metaproject.Quiz.Test.UnitTests.csproj", "{52A619EB-C1E5-4F2F-A99A-6B89B99C64B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metaproject.Quiz.Inf.LearningService", "Metaproject.Quiz.Inf.LearningService\Metaproject.Quiz.Inf.LearningService.csproj", "{B10D7D7B-2591-40F2-9E0E-7927AFA993C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metaproject.Quiz.Application.Internals", "Metaproject.Quiz.Application.Internals\Metaproject.Quiz.Application.Internals.csproj", "{5F84E076-1FB3-4C7C-B199-E8E8E58F9ABF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{B7647EC6-51F4-4C4E-81E2-DEC552C1C120}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{BD0405C4-E80C-4982-8DF3-63018BC8A946}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{68C3EA8E-7FAF-4F3D-A55A-CD5238996E9B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{02541D68-10FF-4111-9878-5002DBAC8A02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{E608B377-149A-4E09-9258-D1D1B1F8BFAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,12 +82,26 @@ Global
 		{B10D7D7B-2591-40F2-9E0E-7927AFA993C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B10D7D7B-2591-40F2-9E0E-7927AFA993C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B10D7D7B-2591-40F2-9E0E-7927AFA993C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F84E076-1FB3-4C7C-B199-E8E8E58F9ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F84E076-1FB3-4C7C-B199-E8E8E58F9ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F84E076-1FB3-4C7C-B199-E8E8E58F9ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F84E076-1FB3-4C7C-B199-E8E8E58F9ABF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{ADDEDC08-AF30-4351-8F8E-EC5EAE867CA7} = {E608B377-149A-4E09-9258-D1D1B1F8BFAB}
+		{9F294AA0-3E6E-4309-9F0B-4B4BA475C45E} = {68C3EA8E-7FAF-4F3D-A55A-CD5238996E9B}
+		{529C5CDB-1F6D-48EA-B5FC-5F35D83287D2} = {B7647EC6-51F4-4C4E-81E2-DEC552C1C120}
+		{66BADCD7-51BB-4833-A1F1-3DF88B393FF3} = {BD0405C4-E80C-4982-8DF3-63018BC8A946}
+		{1332CF73-EF6A-448D-B618-3FEA03518334} = {BD0405C4-E80C-4982-8DF3-63018BC8A946}
+		{65FC3D46-184A-46ED-BD34-195C095C0CBB} = {02541D68-10FF-4111-9878-5002DBAC8A02}
+		{75C926CE-682C-4A63-9129-FF5F6C2A2255} = {BD0405C4-E80C-4982-8DF3-63018BC8A946}
 		{5BC1242A-D073-465E-9754-5957D68166CF} = {53D90C4A-1A85-401F-8F86-A42791FF9E5A}
+		{52A619EB-C1E5-4F2F-A99A-6B89B99C64B7} = {02541D68-10FF-4111-9878-5002DBAC8A02}
+		{B10D7D7B-2591-40F2-9E0E-7927AFA993C8} = {BD0405C4-E80C-4982-8DF3-63018BC8A946}
+		{5F84E076-1FB3-4C7C-B199-E8E8E58F9ABF} = {68C3EA8E-7FAF-4F3D-A55A-CD5238996E9B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78CB8E47-FBB6-4185-B6FC-01FD3DAEB294}

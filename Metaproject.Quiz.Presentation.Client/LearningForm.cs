@@ -19,25 +19,31 @@ namespace Metaproject.Quiz.Presentation.Client
         private enum StatesTypeEnum
         {
             Answer,
-            Validation
+            Validation,
+            NothingElseToLearn
         }
 
         private StatesTypeEnum _currentState = StatesTypeEnum.Answer;
         private QuestionTable _currentQuestion;
         private LearningStatus _status;
+        private List<QuestionTable> _questions;
 
         ILearningService _learningService = new LearningService();
 
-        public LearningForm()
+        public LearningForm(List<QuestionTable> questions)
         {
+            _questions = questions;
+
             InitializeComponent();
+
+            StartLearning();
         }
-
-        public void AttachQuestions(List<QuestionTable> questions)
+        
+        void StartLearning()
         {
+            var result = _learningService.SetupAndGetFirstQuestion(_questions);
 
-            var result = _learningService.SetupAndGetFirstQuestion(questions);
-
+            _currentState = StatesTypeEnum.Answer;
             _currentQuestion = result.NextQuestion;
             _status = result.Status;
 
@@ -46,18 +52,20 @@ namespace Metaproject.Quiz.Presentation.Client
 
         void SetDialog()
         {
-            textBox1.Text = _currentQuestion.Question;
+            textBox1.Text = _currentQuestion?.Question;
             button2.Enabled = _currentState == StatesTypeEnum.Answer;
 
             button1.Enabled = _currentState == StatesTypeEnum.Validation;
             button3.Enabled = _currentState == StatesTypeEnum.Validation;
 
-            textBox2.Text = _currentState == StatesTypeEnum.Answer ? "" : _currentQuestion.Answer;
+            textBox2.Text = _currentState == StatesTypeEnum.Answer ? "" : _currentQuestion?.Answer;
 
             textBox5.Text = _status.New.ToString();
             textBox3.Text = _status.Learning.ToString();
             textBox4.Text = _status.Memorized.ToString();
-            
+
+            label4.Visible = _currentState == StatesTypeEnum.NothingElseToLearn;
+
         }
 
         // memorized clicked
@@ -65,10 +73,20 @@ namespace Metaproject.Quiz.Presentation.Client
         {
             var result = _learningService.ProcessResultAndGetNextQuestion(_currentQuestion, QuestionResult.Memorized);
 
+
             _currentQuestion = result.NextQuestion;
             _status = result.Status;
-            _currentState = StatesTypeEnum.Answer;
 
+
+            if (result.Status.IsAnythingToLearn)
+            {
+                _currentState = StatesTypeEnum.Answer;
+            }
+            else
+            {
+                _currentState = StatesTypeEnum.NothingElseToLearn;
+            }
+            
             SetDialog();
         }
 
@@ -92,7 +110,14 @@ namespace Metaproject.Quiz.Presentation.Client
             SetDialog();
         }
 
-        
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            StartLearning();
+        }
     }
 }
