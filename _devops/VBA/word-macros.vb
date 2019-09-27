@@ -125,8 +125,8 @@ Sub CreateCheatsheetTable()
         tb.Rows(2).Cells(3).range.Font.Size = 8
         
         SetColumnWidth tb, 1, 100
-        SetColumnWidth tb, 2, 300
-        SetColumnWidth tb, 3, 50
+        SetColumnWidth tb, 2, 250
+        SetColumnWidth tb, 3, 100
        
      With tb.Rows(3)
         .range.Font.ColorIndex = wdGray50
@@ -144,6 +144,21 @@ Sub CreateCheatsheetTable()
     End With
     
     
+End Sub
+
+Sub LaunchLearningApplication()
+
+Dim currentDocPath As String
+Dim shellCommand As String
+Dim learningServiceName As String
+
+learningServiceName = "c:\Users\ezszcma\Google Drive\DevNotes\QuizApp\Quiz.exe"
+currentDocPath = ActiveDocument.FullName
+
+shellCommand = """" & learningServiceName & """ """ & currentDocPath & """"
+
+Call Shell(shellCommand, vbNormalFocus)
+
 End Sub
 
 Private Sub SetColumnWidth(table As table, colNumber As Integer, width As Integer)
