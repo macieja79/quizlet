@@ -11,6 +11,7 @@ namespace Metaproject.Quiz.Presentation.Client.IoC
             builder.RegisterModule(new RepositoryModule());
             builder.RegisterModule(new QuizletModule());
             builder.RegisterType<ClientForm>().AsSelf();
+            builder.RegisterType<LearningForm>().AsSelf();
         }
     }
 }
