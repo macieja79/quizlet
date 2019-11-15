@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,9 @@ namespace Metaproject.Quiz.Presentation.Client
         private LearningStatus _status;
         private List<QuestionTable> _questions;
 
+        private TextBox _answerTextBox = new TextBox();
+        private PictureBox _answerPictureBox = new PictureBox();
+
         ILearningService _learningService = new LearningService();
 
         public LearningForm(List<QuestionTable> questions)
@@ -35,10 +39,26 @@ namespace Metaproject.Quiz.Presentation.Client
             _questions = questions;
 
             InitializeComponent();
+            InitializeDynamicComponents();
 
             StartLearning();
         }
-        
+
+        void InitializeDynamicComponents()
+        {
+            _answerTextBox.Margin = new Padding(10,10,10,10);
+            _answerTextBox.Dock = DockStyle.Fill;
+            _answerTextBox.Multiline = true;
+            _answerTextBox.BorderStyle = BorderStyle.None;
+            _answerTextBox.Font = (Font) textBox1.Font.Clone();
+            _answerTextBox.BackColor = textBox1.BackColor;
+
+            _answerPictureBox.Margin = new Padding(10, 10, 10, 10);
+            _answerPictureBox.Dock = DockStyle.Fill;
+            _answerPictureBox.BorderStyle = BorderStyle.None;
+        }
+
+
         void StartLearning()
         {
             var result = _learningService.SetupAndGetFirstQuestion(_questions);
@@ -58,7 +78,7 @@ namespace Metaproject.Quiz.Presentation.Client
             button1.Enabled = _currentState == StatesTypeEnum.Validation;
             button3.Enabled = _currentState == StatesTypeEnum.Validation;
 
-            textBox2.Text = _currentState == StatesTypeEnum.Answer ? "" : _currentQuestion?.Answer;
+            _answerTextBox.Text = _currentState == StatesTypeEnum.Answer ? "" : _currentQuestion?.Answer;
 
             textBox5.Text = _status.New.ToString();
             textBox3.Text = _status.Learning.ToString();
@@ -66,6 +86,23 @@ namespace Metaproject.Quiz.Presentation.Client
 
             label4.Visible = _currentState == StatesTypeEnum.NothingElseToLearn;
 
+            tableLayoutPanel1.Controls.Remove(_answerPictureBox);
+            tableLayoutPanel1.Controls.Remove(_answerTextBox);
+            _answerPictureBox.Visible = _currentState != StatesTypeEnum.Answer;
+            _answerTextBox.Visible = _currentState != StatesTypeEnum.Answer;
+
+            if (null != _currentQuestion)
+            {
+                if (_currentQuestion?.AnswerType == AnswerTypeEnum.Image)
+                {
+                    _answerPictureBox.Image = ByteToImage(_currentQuestion.AnswerAsImage);
+                    tableLayoutPanel1.Controls.Add(_answerPictureBox, 1, 1);
+                }
+                else
+                {
+                    tableLayoutPanel1.Controls.Add(_answerTextBox, 1, 1);
+                }
+            }
         }
 
         // memorized clicked
@@ -118,6 +155,16 @@ namespace Metaproject.Quiz.Presentation.Client
         private void Button5_Click(object sender, EventArgs e)
         {
             StartLearning();
+        }
+
+        public static Bitmap ByteToImage(byte[] blob)
+        {
+            MemoryStream mStream = new MemoryStream();
+            byte[] pData = blob;
+            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
+            Bitmap bm = new Bitmap(mStream, false);
+            mStream.Dispose();
+            return bm;
         }
     }
 }

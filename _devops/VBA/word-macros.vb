@@ -148,16 +148,29 @@ End Sub
 
 Sub LaunchLearningApplication()
 
-Dim currentDocPath As String
-Dim shellCommand As String
 Dim learningServiceName As String
-
+Dim learningServiceName2 As String
 learningServiceName = "c:\Users\ezszcma\Google Drive\DevNotes\QuizApp\Quiz.exe"
+learningServiceName2 = "c:\Users\ezszcma\Google Drive\DevNotes\QuizApp\Quiz.exe"
+
+
+Dim currentDocPath As String
 currentDocPath = ActiveDocument.FullName
+
+Dim shellCommand As String
+Dim shellCommand2 As String
 
 shellCommand = """" & learningServiceName & """ """ & currentDocPath & """"
 
+On Error GoTo errorHandler
+
 Call Shell(shellCommand, vbNormalFocus)
+
+Exit Sub
+
+
+errorHandler:
+
 
 End Sub
 

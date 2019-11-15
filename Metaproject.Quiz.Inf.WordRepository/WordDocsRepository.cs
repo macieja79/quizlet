@@ -56,7 +56,7 @@ namespace Metaproject.Quiz.Inf.WordDocsRepository
                 var quizTables = new List<QuestionTable>();
                 foreach (var table in tables)
                 {
-                    if (TryGetQuestionTable(table, out List<QuestionTable> domainTables))
+                    if (TryGetQuestionTable(wordDocument, table, out List<QuestionTable> domainTables))
                     {
                         quizTables.AddRange(domainTables);
                     }
@@ -74,13 +74,13 @@ namespace Metaproject.Quiz.Inf.WordDocsRepository
         }
 
 
-        bool TryGetQuestionTable(Word.Table wordTable, out List<QuestionTable> domainTables)
+        bool TryGetQuestionTable(WordprocessingDocument wordDocument, Word.Table wordTable, out List<QuestionTable> domainTables)
         {
 
-            if (_questionMapper.TryGetQuestionTable(wordTable, out domainTables))
+            if (_questionMapper.TryGetQuestionTable(wordDocument, wordTable, out domainTables))
                 return true;
 
-            return _cheatsheetMapper.TryGetQuestionTable(wordTable, out domainTables);
+            return _cheatsheetMapper.TryGetQuestionTable(wordDocument, wordTable, out domainTables);
 
 
         }

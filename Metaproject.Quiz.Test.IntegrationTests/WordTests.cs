@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.ComTypes;
 using FluentAssertions;
 using Metaproject.Quiz.Inf.WordDocsRepository;
 using Metaproject.Quiz.Test.IntegrationTests.Helpers;
@@ -47,6 +48,23 @@ namespace Tests
             doc.Tables[0].Answers[1].Should().Be("Test answer 2");
             doc.Tables[0].Answers[2].Should().Be("Test answer 3");
         }
-       
+
+        [Test]
+        public void WordFilesRepository_Should_Store_Image_As_Answer()
+        {
+            var wordDocRepo = new WordFilesRepository();
+
+            var rootPath = IntegrationTestsHelper.GetFullResourcePath("integration-test-question-image.docx");
+
+            var doc = wordDocRepo.GetDocument(rootPath);
+            
+            doc.Tables.Should().HaveCount(1);
+            
+
+
+        }
+
+
+
     }
 }

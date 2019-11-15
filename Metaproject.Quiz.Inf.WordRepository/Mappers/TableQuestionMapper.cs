@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Metaproject.Quiz.Domain.Entities;
 using Metaproject.Quiz.Inf.WordRepository.Mappers;
@@ -17,7 +19,8 @@ namespace Metaproject.Quiz.Inf.WordRepository
             _questionIdParser = questionIdParser;
         }
 
-        public bool TryGetQuestionTable(Table wordTable, out List<QuestionTable> questions)
+        public bool TryGetQuestionTable(WordprocessingDocument document, Table wordTable,
+            out List<QuestionTable> questions)
         {
             questions = new List<QuestionTable>();
 
@@ -45,6 +48,8 @@ namespace Metaproject.Quiz.Inf.WordRepository
             var tagsCell = tagRowsCells[1];
             var optionsCell = tagRowsCells[2];
 
+            var imgAsBytes = GetImageAsBytes(document, answerCell);
+
             var question = GetChildParagraphs(questionCell);
             var answers = GetChildParagraphsForAnswer(answerCell);
 
@@ -59,15 +64,48 @@ namespace Metaproject.Quiz.Inf.WordRepository
             {
                 Question = question,
                 Answers = answers,
+                AnswerAsImage = imgAsBytes,
                 Tags = tags,
                 IsSwitchable = isSwitchable,
                 Id = id
             };
 
             questions.Add(table);
-
             return true;
         }
 
+
+        byte[] GetImageAsBytes(WordprocessingDocument document, TableCell par)
+        {
+            // this code is copy-pasted
+            var imageParts = from graphic in par.Descendants<DocumentFormat.OpenXml.Drawing.Graphic>()
+                let graphicData = graphic.Descendants<DocumentFormat.OpenXml.Drawing.GraphicData>().FirstOrDefault()
+                let pic = graphicData.ElementAt(0)
+                let nvPicPrt = pic.ElementAt(0).FirstOrDefault()
+                let blip = pic.Descendants<DocumentFormat.OpenXml.Drawing.Blip>().FirstOrDefault()
+                select new
+                {
+                    blip
+                };
+
+            if (!imageParts.Any())
+            {
+                return null;
+            }
+
+            var imagePart2 = imageParts?.FirstOrDefault();
+            var id = imagePart2?.blip?.Embed?.Value;
+
+            var imagePart = (ImagePart) document.MainDocumentPart.GetPartById(id);
+            var stream = imagePart.GetStream();
+            
+            byte[] imageAsBytes = null;
+            using (var ms = new MemoryStream())
+            {
+                stream.CopyTo(ms);
+                imageAsBytes = ms.ToArray();
+                return imageAsBytes;
+            }
+        }
     }
 }

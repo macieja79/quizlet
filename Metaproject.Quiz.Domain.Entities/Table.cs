@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 
 namespace Metaproject.Quiz.Domain.Entities
 {
@@ -11,6 +10,11 @@ namespace Metaproject.Quiz.Domain.Entities
         public List<string> Tags { get; set; }
         public bool IsSwitchable { get; set; }
         public string Answer => string.Join(Environment.NewLine, Answers);
+
+        public AnswerTypeEnum AnswerType => IsImage ? AnswerTypeEnum.Image : AnswerTypeEnum.Text;
+
+        public byte[] AnswerAsImage { get; set; }
+        public bool IsImage => AnswerAsImage != null && AnswerAsImage.Length > 0;
 
         public DateTime? Id { get; set; }
 

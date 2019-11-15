@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Metaproject.Quiz.Domain.Entities;
 using Metaproject.Quiz.Inf.WordRepository.Mappers;
@@ -19,7 +20,8 @@ namespace Metaproject.Quiz.Inf.WordRepository
             _questionIdParser = questionIdParser;
         }
 
-        public bool TryGetQuestionTable(Table wordTable, out List<QuestionTable> questions)
+        public bool TryGetQuestionTable(WordprocessingDocument document, Table wordTable,
+            out List<QuestionTable> questions)
         {
             questions = new List<QuestionTable>();
 

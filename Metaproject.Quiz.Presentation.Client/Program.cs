@@ -44,6 +44,8 @@ namespace Metaproject.Quiz.Presentation.Client
                         var originalFileName = Path.GetFileName(originFilePath);
                         var currentDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                         var destFilePath = Path.Combine(currentDir, learnedDoc);
+
+                        File.Delete(destFilePath);
                         File.Copy(originFilePath, destFilePath);
 
                         var doc = repo.GetDocument(destFilePath);
