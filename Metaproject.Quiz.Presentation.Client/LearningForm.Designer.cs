@@ -269,6 +269,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "LearningForm";
             this.Text = "Learning";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LearningForm_KeyPress);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LearningForm_KeyUp);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel2.ResumeLayout(false);

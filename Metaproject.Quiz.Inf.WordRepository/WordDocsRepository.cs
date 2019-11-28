@@ -36,6 +36,7 @@ namespace Metaproject.Quiz.Inf.WordDocsRepository
                 if (fileName.StartsWith("~")) continue;
 
                 var doc = GetDocument(docPath);
+                if (null == doc) continue;
                 documents.Add(doc);
             }
 
@@ -44,32 +45,40 @@ namespace Metaproject.Quiz.Inf.WordDocsRepository
 
         public WordDocument GetDocument(string path)
         {
-            using (WordprocessingDocument wordDocument =
-                WordprocessingDocument.Open(path, false))
+
+            try
             {
-
-                var body = wordDocument.MainDocumentPart.Document.Body;
-
-                var tables = body.ChildElements.OfType<DocumentFormat.OpenXml.Wordprocessing.Table>().ToList();
-         
-
-                var quizTables = new List<QuestionTable>();
-                foreach (var table in tables)
+                using (WordprocessingDocument wordDocument =
+                    WordprocessingDocument.Open(path, false))
                 {
-                    if (TryGetQuestionTable(wordDocument, table, out List<QuestionTable> domainTables))
+
+                    var body = wordDocument.MainDocumentPart.Document.Body;
+
+                    var tables = body.ChildElements.OfType<DocumentFormat.OpenXml.Wordprocessing.Table>().ToList();
+
+
+                    var quizTables = new List<QuestionTable>();
+                    foreach (var table in tables)
                     {
-                        quizTables.AddRange(domainTables);
+                        if (TryGetQuestionTable(wordDocument, table, out List<QuestionTable> domainTables))
+                        {
+                            quizTables.AddRange(domainTables);
+                        }
                     }
+
+                    var doc = new WordDocument
+                    {
+                        Tables = quizTables,
+                        Path = path,
+                        Name = Path.GetFileName(path)
+                    };
+
+                    return doc;
                 }
-
-                var doc = new WordDocument
-                {
-                    Tables = quizTables,
-                    Path = path,
-                    Name = Path.GetFileName(path)
-                };
-
-                return doc;
+            }
+            catch
+            {
+                return null;
             }
         }
 
