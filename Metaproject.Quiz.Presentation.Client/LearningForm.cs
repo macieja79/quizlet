@@ -56,6 +56,7 @@ namespace Metaproject.Quiz.Presentation.Client
             _answerPictureBox.Margin = new Padding(10, 10, 10, 10);
             _answerPictureBox.Dock = DockStyle.Fill;
             _answerPictureBox.BorderStyle = BorderStyle.None;
+            _answerPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
 
