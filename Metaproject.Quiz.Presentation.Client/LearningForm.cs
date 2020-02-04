@@ -104,6 +104,11 @@ namespace Metaproject.Quiz.Presentation.Client
                     tableLayoutPanel1.Controls.Add(_answerTextBox, 1, 1);
                 }
             }
+
+            if (_currentState == StatesTypeEnum.Answer)
+                button2.Focus();
+            else if (_currentState == StatesTypeEnum.Validation)
+                button1.Focus();
         }
 
         // memorized clicked
@@ -166,6 +171,27 @@ namespace Metaproject.Quiz.Presentation.Client
             Bitmap bm = new Bitmap(mStream, false);
             mStream.Dispose();
             return bm;
+        }
+
+        private void LearningForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            
+          
+
+        }
+
+        private void LearningForm_KeyUp(object sender, KeyEventArgs e)
+        {
+
+            if (_currentState == StatesTypeEnum.Validation)
+            {
+                if (e.KeyCode == Keys.A)
+                {
+                    button3.PerformClick();
+                }
+            }
+
         }
     }
 }
